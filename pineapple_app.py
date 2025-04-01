@@ -13,9 +13,7 @@ def initialize_pinecone():
 def retrieve_answer(assistant, query, json_mode):
     msg = Message(role="user", content=query)
 
-    resp = assistant.chat(messages=[msg],
-                          json_response=json_mode
-                          )
+    resp = assistant.chat(messages=[msg])
     return resp.message
 
 def main(assistant):
@@ -31,17 +29,14 @@ def main(assistant):
     user_query = st.text_input("Enter your query:")
     if st.button("Submit"):
         if user_query:
-            st.session_state.messages.append({"role": "user", "content": user_input})
+            st.session_state.messages.append({"role": "user", "content": user_query})
             with st.chat_message("user"):
-                st.markdown(user_input)
+                st.markdown(user_query)
             
-            answer = retrieve_answer(assistant, user_query, json_mode)
-            if json_mode:
-                st.json(answer.content)
-            else:
-                st.write(answer.content)
-            st.markdown(assistant_message)
-            st.session_state.messages.append({"role": "assistant", "content": assistant_message})
+            answer = retrieve_answer(assistant, user_query, "")
+            st.write(answer.content)
+            st.markdown(answer)
+            st.session_state.messages.append(answer)
             full_response.write(answer)
         else:
             st.warning("Please enter a query.")
@@ -49,9 +44,11 @@ def main(assistant):
 
 
 if __name__ == "__main__":
-    
+
     pa = initialize_pinecone()
+    
     st.sidebar.markdown("# :blue[Options]")
+    
     full_response = st.sidebar.expander("Full response", expanded=False)
 
     main(pa)

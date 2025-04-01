@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pinecone import pinecone
+from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
 
 def initialize_pinecone():

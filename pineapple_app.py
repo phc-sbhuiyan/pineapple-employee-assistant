@@ -19,17 +19,35 @@ def retrieve_answer(assistant, query, json_mode):
     return resp.message
 
 def main(assistant):
-    st.markdown("# :blue[PHQ Employee Assistant]: actg sop 07 walk letters")
+    if "messages" not in st.session_state:
+        st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
+
+    # Display chat history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+                st.markdown(message["content"])
+    #    
+    # st.markdown("# :blue[PHQ Employee Assistant]: actg sop 07 walk letters")
+    #
 
     # User query input
     user_query = st.text_input("Enter your query:")
     if st.button("Submit"):
         if user_query:
+            st.session_state.messages.append({"role": "user", "content": user_input})
+            with st.chat_message("user"):
+                st.markdown(user_input)
+            
             answer = retrieve_answer(assistant, user_query, json_mode)
             if json_mode:
                 st.json(answer.content)
             else:
                 st.write(answer.content)
+            
+            st.markdown(assistant_message)
+            # Add assistant message to chat history
+            st.session_state.messages.append({"role": "assistant", "content": assistant_message})
+            
             full_response.write(answer)
         else:
             st.warning("Please enter a query.")
@@ -42,9 +60,7 @@ if __name__ == "__main__":
 
     st.sidebar.markdown("# :blue[Options]")
     
-    json_mode = st.sidebar.radio("Select Answer Format", 
-                                 ("Normal text", "JSON"),
-                                 horizontal=True) == "JSON"
+    #json_mode = st.sidebar.radio("Select Answer Format",  ("Normal text", "JSON"), horizontal=True) == "JSON"
     
     full_response = st.sidebar.expander("Full response", expanded=False)
 

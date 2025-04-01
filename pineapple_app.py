@@ -13,7 +13,7 @@ def initialize_pinecone():
         return assistant
 
 def initialize_openai():
-    client = OpenAI(st.secrets["OPENAI_API_KEY"])
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
     return client
 
 def retrieve_answer(assistant, query, json_mode):

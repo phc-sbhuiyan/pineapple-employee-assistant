@@ -1,7 +1,7 @@
 import streamlit as st
 from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
-from audiorecorder import audiorecorder
+from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 
 def initialize_pinecone():
@@ -29,16 +29,13 @@ def main(assistant):
         st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
 
     client = initialize_openai()
-    audio_bytes = audiorecorder("Click to record", "Click to stop recording")
+    audio_bytes = audio_recorder(pause_threshold=2.0, sample_rate=41_000)
     transcript_text = '';
-    if len(audio_bytes) > 0:
-         st.audio(audio_bytes.export().read())
-         audio.export("audio.wav", format="wav")
-         with open("audio.wav", "rb") as audio_file:
-                 transcript = client.audio.transcriptions.create(
-                    model="whisper-1",
-                    file = audio_file
-                )
+    if audio_bytes:
+         audio_location = "audio_file.wav"
+         with open(audio_location, "wb") as f:
+                f.write(audio_bytes)
+         transcript = client.audio.transcriptions.create(model="whisper-1", file = audio_location)
          transcript_text = transcript.text
          st.write(transcript_text)
 

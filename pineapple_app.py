@@ -30,6 +30,7 @@ def main(assistant):
 
     client = initialize_openai()
     audio_bytes = audio_recorder()
+    transcript_text = '';
     if audio_bytes:
          transcript = client.audio.transcriptions.create(
             model="whisper-1",

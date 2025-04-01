@@ -26,9 +26,6 @@ def main(assistant):
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
                 st.markdown(message["content"])
-    #    
-    # st.markdown("# :blue[PHQ Employee Assistant]: actg sop 07 walk letters")
-    #
 
     # User query input
     user_query = st.text_input("Enter your query:")
@@ -43,11 +40,8 @@ def main(assistant):
                 st.json(answer.content)
             else:
                 st.write(answer.content)
-            
             st.markdown(assistant_message)
-            # Add assistant message to chat history
             st.session_state.messages.append({"role": "assistant", "content": assistant_message})
-            
             full_response.write(answer)
         else:
             st.warning("Please enter a query.")

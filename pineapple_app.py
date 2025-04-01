@@ -32,10 +32,10 @@ def main(assistant):
     audio_bytes = audio_recorder(pause_threshold=2.0, sample_rate=41_000)
     transcript_text = '';
     if audio_bytes:
-         audio_location = "audio_file.wav"
-         with open(audio_location, "wb") as f:
-                f.write(audio_bytes.encode())
-         transcript = client.audio.transcriptions.create(model="whisper-1", file = audio_location)
+         #audio_location = "audio_file.wav"
+         #with open(audio_location, "wb") as f:
+                #f.write(audio_bytes.encode())
+         transcript = client.audio.transcriptions.create(model="whisper-1", file = audio_bytes)
          transcript_text = transcript.text
          st.write(transcript_text)
 

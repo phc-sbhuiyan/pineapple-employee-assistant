@@ -29,7 +29,7 @@ def main(assistant):
         st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
 
     client = initialize_openai()
-    audio_bytes = audio_recorder("Click to record", "Click to stop recording"))
+    audio_bytes = audio_recorder("Click to record", "Click to stop recording")
     transcript_text = '';
     if len(audio_bytes) > 0:
          st.audio(audio_bytes.export().read())

@@ -29,14 +29,16 @@ def main(assistant):
         st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
 
     client = initialize_openai()
-    audio_bytes = audio_recorder()
+    audio_bytes = audio_recorder("Click to record", "Click to stop recording"))
     transcript_text = '';
-    if audio_bytes:
-         st.audio(audio_bytes, format="audio/wav")
-         transcript = client.audio.transcriptions.create(
-            model="whisper-1",
-            file = audio_bytes
-        )
+    if len(audio_bytes) > 0:
+         st.audio(audio_bytes.export().read())
+         audio.export("audio.wav", format="wav")
+         with open("audio.wav", "rb") as audio_file:
+                 transcript = client.audio.transcriptions.create(
+                    model="whisper-1",
+                    file = audio_file
+                )
          transcript_text = transcript.text
          st.write(transcript_text)
 

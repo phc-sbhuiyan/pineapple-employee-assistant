@@ -1,6 +1,8 @@
 import streamlit as st
 from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
+from audio_recorder_streamlit import audio_recorder
+from openai import OpenAI
 
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]
@@ -10,6 +12,10 @@ def initialize_pinecone():
         )
         return assistant
 
+def initialize_openai():
+    client = OpenAI();
+    return client;
+
 def retrieve_answer(assistant, query, json_mode):
     msg = Message(role="user", content=query)
 
@@ -17,8 +23,14 @@ def retrieve_answer(assistant, query, json_mode):
     return resp.message
 
 def main(assistant):
+    audio_value = st.audio_input("record a voice message to transcribe")
+    
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
+
+    audio_bytes = audio_recorder()
+    if audio_bytes:
+        st.audio(audio_bytes, format="audio/wav")
 
     # Display chat history
     for message in st.session_state.messages:

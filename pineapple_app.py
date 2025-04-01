@@ -13,8 +13,8 @@ def initialize_pinecone():
         return assistant
 
 def initialize_openai():
-    client = OpenAI();
-    return client;
+    client = OpenAI(st.secrets["OPENAI_API_KEY"])
+    return client
 
 def retrieve_answer(assistant, query, json_mode):
     msg = Message(role="user", content=query)
@@ -23,14 +23,20 @@ def retrieve_answer(assistant, query, json_mode):
     return resp.message
 
 def main(assistant):
-    audio_value = st.audio_input("record a voice message to transcribe")
-    
+    #audio_value = st.audio_input("record a voice message to transcribe")
+
     if "messages" not in st.session_state:
         st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
 
+    client = initialize_openai()
     audio_bytes = audio_recorder()
     if audio_bytes:
-        st.audio(audio_bytes, format="audio/wav")
+         transcript = client.audio.transcriptions.create(
+            model="whisper-1",
+            file = audio_bytes
+        )
+         transcript_text = transcript.text
+         st.write(transcript_text)
 
     # Display chat history
     for message in st.session_state.messages:
@@ -38,7 +44,7 @@ def main(assistant):
                 st.markdown(message["content"])
 
     # User query input
-    user_query = st.text_input("Enter your query:")
+    user_query = transcript_text    #st.text_input("Enter your query:")
     if st.button("Submit"):
         if user_query:
             st.session_state.messages.append({"role": "user", "content": user_query})

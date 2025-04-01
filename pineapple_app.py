@@ -1,7 +1,6 @@
 import streamlit as st
-
-from pinecone import pinecone
-#from pinecone_plugins.assistant.models.chat import Message
+from pinecone import Pinecone
+from pinecone_plugins.assistant.models.chat import Message
 
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]

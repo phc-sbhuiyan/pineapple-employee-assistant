@@ -32,6 +32,7 @@ def main(assistant):
     audio_bytes = audio_recorder()
     transcript_text = '';
     if audio_bytes:
+         st.audio(audio_bytes, format="audio/wav")
          transcript = client.audio.transcriptions.create(
             model="whisper-1",
             file = audio_bytes

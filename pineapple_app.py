@@ -51,11 +51,7 @@ def main(assistant):
 if __name__ == "__main__":
     
     pa = initialize_pinecone()
-
     st.sidebar.markdown("# :blue[Options]")
-    
-    #json_mode = st.sidebar.radio("Select Answer Format",  ("Normal text", "JSON"), horizontal=True) == "JSON"
-    
     full_response = st.sidebar.expander("Full response", expanded=False)
 
     main(pa)

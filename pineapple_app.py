@@ -58,7 +58,7 @@ def main(assistant):
             st.write(answer.content)
             st.markdown(answer)
             st.session_state.messages.append(answer)
-            full_response.write(answer)
+            #full_response.write(answer)
         else:
             st.warning("Please enter a query.")
 
@@ -70,6 +70,6 @@ if __name__ == "__main__":
     
     st.sidebar.markdown("# :blue[Options]")
     
-    full_response = st.sidebar.expander("Full response", expanded=False)
+    #full_response = st.sidebar.expander("Full response", expanded=False)
 
     main(pa)

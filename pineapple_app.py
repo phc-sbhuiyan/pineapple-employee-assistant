@@ -23,6 +23,15 @@ def add_logo():
         """,
         unsafe_allow_html=True,
     )
+    
+    #hiding footer by streamlit
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]

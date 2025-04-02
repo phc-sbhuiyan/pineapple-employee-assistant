@@ -1,7 +1,7 @@
 [theme]
 font = "Roboto"
 primaryColor = "#0000FF"
-backgroundColor = "#F0F0F0"
+backgroundColor = "#000000"
 secondaryBackgroundColor = "#F0F0F0"
 textColor = "#000000"
 

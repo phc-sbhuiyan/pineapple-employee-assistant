@@ -35,7 +35,9 @@ def main(assistant):
          audio_location = "audio_file.wav"
          with open(audio_location, "wb") as f:
                 f.write(audio_bytes)
-                transcript = client.audio.transcriptions.create(model="whisper-1", file = f)
+
+         with open(audio_location, "rb") as fa:
+                transcript = client.audio.transcriptions.create(model="whisper-1", file = fa)
                 transcript_text = transcript.text
          st.write(transcript_text)
 

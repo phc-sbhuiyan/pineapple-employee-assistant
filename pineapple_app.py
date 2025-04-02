@@ -4,6 +4,12 @@ from pinecone_plugins.assistant.models.chat import Message
 from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 
+st.logo(
+    "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
+    icon_image="https://lh3.googleusercontent.com/o1lnTsMUxZZKJZ56s2wd7x2up7VZRmGf6V6zdzyeC9r7-_Quq0jo--vJOSIMTHLSWJA=s256-c",
+)
+st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistanct!")
+
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]
         pc = Pinecone(api_key=api_key)
@@ -26,7 +32,7 @@ def main(assistant):
     #audio_value = st.audio_input("record a voice message to transcribe")
 
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant"}]
+        st.session_state.messages = [{"role": "system", "content": "Hello Pineapple, please click to record your question or enter your question."}]
 
     client = initialize_openai()
     audio_bytes = audio_recorder(pause_threshold=2.0, sample_rate=41_000)

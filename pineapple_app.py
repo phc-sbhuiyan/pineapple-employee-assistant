@@ -11,6 +11,18 @@ def add_logo():
     )
     st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistanct!")
 
+    #for right side logo
+    logo_url = "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg"
+    st.markdown(
+        f"""
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Chinook Tunes</h1>
+            <img src="{logo_url}" style="height: 50px;">
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]
         pc = Pinecone(api_key=api_key)

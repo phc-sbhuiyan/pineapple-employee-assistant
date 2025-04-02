@@ -5,6 +5,7 @@ from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 
 def add_logo():
+    st.set_page_config(layout="wide")
     st.logo(
         "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
         icon_image="https://lh3.googleusercontent.com/o1lnTsMUxZZKJZ56s2wd7x2up7VZRmGf6V6zdzyeC9r7-_Quq0jo--vJOSIMTHLSWJA=s256-c",

@@ -40,6 +40,7 @@ def main(assistant):
                 transcript = client.audio.transcriptions.create(model="whisper-1", file = fa)
                 transcript_text = transcript.text
          st.write(transcript_text)
+         user_query = transcript_text
 
     # Display chat history
     for message in st.session_state.messages:
@@ -47,7 +48,7 @@ def main(assistant):
                 st.markdown(message["content"])
 
     # User query input
-    user_query = transcript_text    #st.text_input("Enter your query:")
+    user_query = st.text_input("Enter your query:")
     if st.button("Submit"):
         if user_query:
             st.session_state.messages.append({"role": "user", "content": user_query})

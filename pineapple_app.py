@@ -5,35 +5,11 @@ from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 
 def add_logo():
-    st.markdown(
-        """
-        <style>
-            [data-testid="stSidebarNav"] {
-                background-image: url(http://placekitten.com/200/200);
-                background-repeat: no-repeat;
-                padding-top: 120px;
-                background-position: 20px 20px;
-            }
-            [data-testid="stSidebarNav"]::before {
-                content: "My Company Name";
-                margin-left: 20px;
-                margin-top: 20px;
-                font-size: 30px;
-                position: relative;
-                top: 100px;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True,
+    st.logo(
+        "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
+        icon_image="https://lh3.googleusercontent.com/o1lnTsMUxZZKJZ56s2wd7x2up7VZRmGf6V6zdzyeC9r7-_Quq0jo--vJOSIMTHLSWJA=s256-c",
     )
-    
-st.logo(
-    "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
-    icon_image="https://lh3.googleusercontent.com/o1lnTsMUxZZKJZ56s2wd7x2up7VZRmGf6V6zdzyeC9r7-_Quq0jo--vJOSIMTHLSWJA=s256-c",
-)
-st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistanct!")
-
-add_logo()
+    st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistanct!")
 
 def initialize_pinecone():
         api_key = st.secrets["PINECONE_API_KEY"]
@@ -98,6 +74,7 @@ def main(assistant):
 
 if __name__ == "__main__":
 
+    add_logo()
     pa = initialize_pinecone()
     
     #st.sidebar.markdown("# :blue[Options]")

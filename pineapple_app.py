@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     pa = initialize_pinecone()
     
-    st.sidebar.markdown("# :blue[Options]")
+    #st.sidebar.markdown("# :blue[Options]")
     
     #full_response = st.sidebar.expander("Full response", expanded=False)
 

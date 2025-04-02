@@ -16,7 +16,7 @@ def add_logo():
     st.markdown(
         f"""
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>Chinook Tunes</h1>
+            <h1>Welcome My Pineapple!</h1>
             <img src="{logo_url}" style="height: 50px;">
         </div>
         """,

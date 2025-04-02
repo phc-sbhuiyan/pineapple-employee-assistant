@@ -35,8 +35,8 @@ def main(assistant):
          audio_location = "audio_file.wav"
          with open(audio_location, "wb") as f:
                 f.write(audio_bytes)
-         transcript = client.audio.transcriptions.create(model="whisper-1", file = audio_location)
-         transcript_text = transcript.text
+                transcript = client.audio.transcriptions.create(model="whisper-1", file = f)
+                transcript_text = transcript.text
          st.write(transcript_text)
 
     # Display chat history

@@ -33,7 +33,7 @@ def main(assistant):
     #audio_value = st.audio_input("record a voice message to transcribe")
 
     if "messages" not in st.session_state:
-        st.session_state.messages = [{"role": "system", "content": "Hello Pineapple, please click to record your question or enter your question."}]
+        st.session_state.messages = [{"role": "system", "content": "Hello Pineapple, please click to record your question or enter your query."}]
 
     client = initialize_openai()
     audio_bytes = audio_recorder(pause_threshold=2.0, sample_rate=41_000)

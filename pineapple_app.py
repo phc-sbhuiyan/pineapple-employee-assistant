@@ -10,14 +10,14 @@ def add_logo():
         "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
         icon_image="https://lh3.googleusercontent.com/o1lnTsMUxZZKJZ56s2wd7x2up7VZRmGf6V6zdzyeC9r7-_Quq0jo--vJOSIMTHLSWJA=s256-c",
     )
-    st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistanct!")
+    st.sidebar.markdown("Welcome to 🍍 Staypineapple Employee Assistant!")
 
     #for right side logo
     logo_url = "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg"
     st.markdown(
         f"""
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>Welcome My Pineapple!</h1>
+            <h1>Welcome Pineapples!</h1>
             <img src="{logo_url}" style="height: 50px;">
         </div>
         """,

@@ -50,7 +50,7 @@ def initialize_openai():
 
 def retrieve_answer(assistant, query, json_mode):
     if query:
-        st.write(query)
+        #st.write(query)
         with st.chat_message("user"):
                 st.markdown(query)
         IsRunning = True
@@ -58,8 +58,8 @@ def retrieve_answer(assistant, query, json_mode):
         resp = assistant.chat(messages=[msg])
         IsRunning = False
         
-        st.write(resp.content)
-        #st.markdown(resp)
+        st.write(resp.message.content)
+        st.markdown(resp.message)
         st.session_state.messages.append(resp.message)
         return resp.message
     else:

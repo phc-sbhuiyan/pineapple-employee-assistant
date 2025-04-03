@@ -5,8 +5,6 @@ from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 import time
 
-IsRunning = False
-
 def setup_pineapple_branding_and_text():
     st.set_page_config(page_title='Staypineapple Employee Assistant', page_icon = 'https://www.staypineapple.com/skins/skin-pineapple-hospitality/favicon.ico', layout="wide")
     st.logo(
@@ -99,6 +97,7 @@ def main(assistant):
     # User query input
     user_query = st.text_input("Enter your query:")
     if st.button("Submit", on_click=retrieve_answer, args=[assistant, user_query, ""]):
+        IsRunning = False
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0

@@ -50,10 +50,16 @@ def initialize_openai():
 
 def retrieve_answer(assistant, query, json_mode):
     if query:
+        with st.chat_message("user"):
+                st.markdown(user_query)
         IsRunning = True
         msg = Message(role="user", content=query)
         resp = assistant.chat(messages=[msg])
         IsRunning = False
+        
+        st.write(answer.content)
+        st.markdown(answer)
+        st.session_state.messages.append(resp.message)
         return resp.message
     else:
         st.warning("Please enter a query.")
@@ -85,8 +91,7 @@ def main(assistant):
 
     # User query input
     user_query = st.text_input("Enter your query:")
-    st.button("Submit", on_click=retrieve_answer, args=(assistant, user_query, ""))
-    if user_query:
+    if st.button("Submit", on_click=retrieve_answer, args=(assistant, user_query, "")):
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0

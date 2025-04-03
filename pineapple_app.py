@@ -3,6 +3,9 @@ from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
 from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
+import time
+
+IsRunning = False
 
 def setup_pineapple_branding_and_text():
     st.set_page_config(page_title='Staypineapple Employee Assistant', page_icon = 'https://www.staypineapple.com/skins/skin-pineapple-hospitality/favicon.ico', layout="wide")
@@ -46,10 +49,14 @@ def initialize_openai():
     return client
 
 def retrieve_answer(assistant, query, json_mode):
-    msg = Message(role="user", content=query)
-
-    resp = assistant.chat(messages=[msg])
-    return resp.message
+    if query:
+        IsRunning = True
+        msg = Message(role="user", content=query)
+        resp = assistant.chat(messages=[msg])
+        IsRunning = False
+        return resp.message
+    else:
+        st.warning("Please enter a query.")
 
 def main(assistant):
     #audio_value = st.audio_input("record a voice message to transcribe")
@@ -78,20 +85,19 @@ def main(assistant):
 
     # User query input
     user_query = st.text_input("Enter your query:")
-    if st.button("Submit"):
-        if user_query:
-            st.spinner("Searching our SOPs, please wait...", show_time=True)
-            st.session_state.messages.append({"role": "user", "content": user_query})
-            with st.chat_message("user"):
-                st.markdown(user_query)
-            
-            answer = retrieve_answer(assistant, user_query, "")
-            st.write(answer.content)
-            st.markdown(answer)
-            st.session_state.messages.append(answer)
-            #full_response.write(answer)
-        else:
-            st.warning("Please enter a query.")
+    st.button("Submit", on_click=retrieve_answer, args=[assistant, user_query, ""])
+    if user_query:
+        progress_text = "Operation in progress, Please wait..."
+        progressBar = st.progress(0, text=progress_text)
+        while True:
+            time.sleep(0.01)
+            progressBar.progress(percent_complete + 1, text=progress_text)
+            percent_complete += 1
+            if IsRunning == True:
+                break
+        time.sleep(1)
+        progressBar.empty()
+        user_query = '';
 
 setup_pineapple_branding_and_text()
 

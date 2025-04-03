@@ -92,7 +92,7 @@ def main(assistant):
                 st.markdown(message["content"])
 
     # User query input
-    #user_query = st.text_input("Enter your query:")
+    user_query = st.text_input("Enter your query:")
     if st.button("Submit", on_click=retrieve_answer, args=(assistant, "", "")):
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)

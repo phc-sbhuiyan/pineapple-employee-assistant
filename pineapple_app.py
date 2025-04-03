@@ -52,7 +52,7 @@ def retrieve_answer(assistant, query, json_mode):
     if query:
         st.write(query)
         with st.chat_message("user"):
-                st.markdown(user_query)
+                st.markdown(query)
         IsRunning = True
         msg = Message(role="user", content=query)
         resp = assistant.chat(messages=[msg])

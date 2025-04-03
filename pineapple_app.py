@@ -4,7 +4,7 @@ from pinecone_plugins.assistant.models.chat import Message
 from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
 
-def add_logo():
+def setup_pineapple_branding_and_text():
     st.set_page_config(page_title='Staypineapple Employee Assistant', page_icon = 'https://www.staypineapple.com/skins/skin-pineapple-hospitality/favicon.ico', layout="wide")
     st.logo(
         "https://www.staypineapple.com/skins/skin-pineapple-hospitality/assets/desktop/images/logo.svg",
@@ -96,7 +96,8 @@ def main(assistant):
 
 if __name__ == "__main__":
 
-    add_logo()
+    setup_pineapple_branding_and_text()
+    
     pa = initialize_pinecone()
     
     #st.sidebar.markdown("# :blue[Options]")

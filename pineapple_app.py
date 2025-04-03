@@ -80,6 +80,7 @@ def main(assistant):
     user_query = st.text_input("Enter your query:")
     if st.button("Submit"):
         if user_query:
+            st.spinner("Searching our SOPs, please wait...", show_time=True)
             st.session_state.messages.append({"role": "user", "content": user_query})
             with st.chat_message("user"):
                 st.markdown(user_query)

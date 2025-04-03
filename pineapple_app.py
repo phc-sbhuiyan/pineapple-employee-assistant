@@ -99,14 +99,14 @@ def main(assistant):
     if st.button("Submit", on_click=retrieve_answer, args=[assistant, user_query, ""]):
         IsRunning = True
         progress_text = "Operation in progress, Please wait..."
-        progressBar = st.progress(0, text=progress_text)
-        percent_complete = 0
-        while IsRunning:
-            time.sleep(0.05)
-            progressBar.progress(percent_complete + 1, text=progress_text)
-            percent_complete += 1
-        time.sleep(0.5)
-        progressBar.empty()
+        #progressBar = st.progress(0, text=progress_text)
+        #percent_complete = 0
+        #while IsRunning:
+            #time.sleep(0.05)
+            #progressBar.progress(percent_complete + 1, text=progress_text)
+            #percent_complete += 1
+        #time.sleep(0.5)
+        #progressBar.empty()
 
 setup_pineapple_branding_and_text()
 

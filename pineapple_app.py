@@ -92,16 +92,10 @@ def main(assistant):
         else:
             st.warning("Please enter a query.")
 
-
+setup_pineapple_branding_and_text()
 
 if __name__ == "__main__":
-
-    setup_pineapple_branding_and_text()
-    
     pa = initialize_pinecone()
-    
     #st.sidebar.markdown("# :blue[Options]")
-    
     #full_response = st.sidebar.expander("Full response", expanded=False)
-
     main(pa)

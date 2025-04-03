@@ -59,9 +59,9 @@ def retrieve_answer(assistant, query, json_mode):
         
         #st.write(resp.message.content)
         with st.chat_message("user"):
-                #st.markdown(query)
+                st.markdown(query)
                 st.markdown(resp.message)
-        #st.session_state.messages.append(resp.message)
+        st.session_state.messages.append(resp.message)
         return resp.message
     else:
         st.warning("Please enter a query.")
@@ -87,9 +87,9 @@ def main(assistant):
          user_query = transcript_text
 
     # Display chat history
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-                st.markdown(message["content"])
+    #for message in st.session_state.messages:
+     #   with st.chat_message(message["role"]):
+      #          st.markdown(message["content"])
 
     # User query input
     user_query = st.text_input("Enter your query:")

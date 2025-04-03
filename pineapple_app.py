@@ -91,12 +91,12 @@ def main(assistant):
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0
         while True:
-            time.sleep(500)
+            time.sleep()
             progressBar.progress(percent_complete + 1, text=progress_text)
             percent_complete += 1
             if IsRunning == True:
                 break
-        time.sleep(1)
+        time.sleep(0.5)
         progressBar.empty()
         user_query = '';
 

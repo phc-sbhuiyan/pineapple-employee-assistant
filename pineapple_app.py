@@ -50,6 +50,7 @@ def initialize_openai():
 
 def retrieve_answer(assistant, query, json_mode):
     if query:
+        st.write(query)
         with st.chat_message("user"):
                 st.markdown(user_query)
         IsRunning = True
@@ -95,12 +96,10 @@ def main(assistant):
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0
-        while True:
+        while IsRunning:
             time.sleep(0.5)
             progressBar.progress(percent_complete + 1, text=progress_text)
             percent_complete += 1
-            if IsRunning == True:
-                break
         time.sleep(0.5)
         progressBar.empty()
         user_query = '';

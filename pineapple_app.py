@@ -67,8 +67,8 @@ def retrieve_answer(assistant, query, json_mode):
         #st.markdown(resp.message["content"])
         #st.session_state.messages.append(resp.message)
         return resp.message
-    else:
-        st.warning("Please enter a query.")
+    #else:
+        #st.warning("Please enter a query.")
 
 def main(assistant):
     #audio_value = st.audio_input("record a voice message to transcribe")

@@ -1,5 +1,5 @@
 # pineapple-employee-assistant
-Pineapple employee assistant using Pinecone RAG and Streamlit!
+Pineapple employee assistant for Pineapples!
 
 # Setup Branding
 Edit inside of the <br/>

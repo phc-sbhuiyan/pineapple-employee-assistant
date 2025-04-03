@@ -60,8 +60,10 @@ def retrieve_answer(assistant, query, json_mode):
         #st.write(resp.message.content)
         with st.chat_message("user"):
                 st.markdown(query)
-                st.markdown(resp.message)
-        st.session_state.messages.append(resp.message)
+                st.markdown(resp.message["content"])
+        #st.session_state.messages.append(resp.message)
+        time.sleep(0.5)
+        progressBar.empty()
         return resp.message
     else:
         st.warning("Please enter a query.")
@@ -101,8 +103,6 @@ def main(assistant):
             time.sleep(0.05)
             progressBar.progress(percent_complete + 1, text=progress_text)
             percent_complete += 1
-        time.sleep(0.5)
-        progressBar.empty()
 
 setup_pineapple_branding_and_text()
 

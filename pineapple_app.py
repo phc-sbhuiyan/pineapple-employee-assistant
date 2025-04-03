@@ -58,7 +58,7 @@ def retrieve_answer(assistant, query, json_mode):
         resp = assistant.chat(messages=[msg])
         IsRunning = False
         
-        st.write(resp.message.content)
+        #st.write(resp.message.content)
         st.markdown(resp.message)
         st.session_state.messages.append(resp.message)
         return resp.message
@@ -97,7 +97,7 @@ def main(assistant):
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0
         while IsRunning:
-            time.sleep(0.5)
+            time.sleep(0.05)
             progressBar.progress(percent_complete + 1, text=progress_text)
             percent_complete += 1
         time.sleep(0.5)

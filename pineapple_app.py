@@ -102,7 +102,6 @@ def main(assistant):
             percent_complete += 1
         time.sleep(0.5)
         progressBar.empty()
-        user_query = '';
 
 setup_pineapple_branding_and_text()
 

@@ -1,4 +1,4 @@
-# pineapple-employee-assistant
+# Staypineapple Employee Assistant Chatbot
 Pineapple employee assistant for Pineapples!
 
 # Setup Branding

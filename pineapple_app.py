@@ -58,8 +58,8 @@ def retrieve_answer(assistant, query, json_mode):
         resp = assistant.chat(messages=[msg])
         IsRunning = False
         
-        st.write(answer.content)
-        st.markdown(answer)
+        st.write(resp.content)
+        #st.markdown(resp)
         st.session_state.messages.append(resp.message)
         return resp.message
     else:

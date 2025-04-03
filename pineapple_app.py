@@ -54,7 +54,6 @@ def retrieve_answer(assistant, query, json_mode):
         IsRunning = True
         msg = Message(role="user", content=query)
         resp = assistant.chat(messages=[msg])
-        IsRunning = False
         #st.session_state.messages.append(query)
         
         #st.write(resp.message.content)
@@ -66,6 +65,8 @@ def retrieve_answer(assistant, query, json_mode):
             
         #st.markdown(resp.message["content"])
         #st.session_state.messages.append(resp.message)
+        
+        IsRunning = False
         return resp.message
     #else:
         #st.warning("Please enter a query.")

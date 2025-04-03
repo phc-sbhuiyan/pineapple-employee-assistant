@@ -49,7 +49,6 @@ def initialize_openai():
     return client
 
 def retrieve_answer(assistant, query, json_mode):
-    query = st.text_input("Enter your query:")
     if query:
         #st.write(query)
         with st.chat_message("user"):
@@ -93,7 +92,7 @@ def main(assistant):
 
     # User query input
     user_query = st.text_input("Enter your query:")
-    if st.button("Submit", on_click=retrieve_answer, args=(assistant, "", "")):
+    if st.button("Submit", on_click=retrieve_answer, args=[assistant, user_query, ""]):
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)
         percent_complete = 0

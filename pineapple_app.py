@@ -85,7 +85,7 @@ def main(assistant):
 
     # User query input
     user_query = st.text_input("Enter your query:")
-    st.button("Submit", on_click=retrieve_answer, args=[assistant, user_query, ""])
+    st.button("Submit", on_click=retrieve_answer, args=(assistant, user_query, ""))
     if user_query:
         progress_text = "Operation in progress, Please wait..."
         progressBar = st.progress(0, text=progress_text)
